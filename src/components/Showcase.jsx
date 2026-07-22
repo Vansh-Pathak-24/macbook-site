@@ -6,7 +6,8 @@ const Showcase = () => {
     const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
 
     useGSAP(() => {
-        const timeline = gsap.timeline({
+        if(!isTablet) {
+            const timeline = gsap.timeline({
             scrollTrigger: {
                 trigger: '#showcase',
                 start: 'top top',
@@ -18,14 +19,14 @@ const Showcase = () => {
 
         timeline 
             .to('.mask img', {
-                transform: 'scale(1.1)'
+                scale: 1.1
             })
             .to('.content', {
                 opacity: 1,
                 y: 0,
                 ease: 'power1.in'
             });
-    }, [isTablet])
+        }}, [isTablet]);
 
 
 
